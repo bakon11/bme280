@@ -1,0 +1,14 @@
+{
+  "name": "bme280",
+  "version": "1.0.0",
+  "description": "bme280 nodejs fun",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bme280": "^2.1.0"
+  }
+}
