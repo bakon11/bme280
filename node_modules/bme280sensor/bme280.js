@@ -91,7 +91,7 @@ const CONFIG = {
 const delay = milliseconds =>
   new Promise(resolve => setTimeout(resolve, milliseconds + 1));
 
-const open = options => {
+const open = (options, i2c_address) => {
   return Promise.resolve().then(_ => {
     options = options || {};
 
@@ -99,7 +99,7 @@ const open = options => {
 
     options = Object.assign({
       i2cBusNumber: DEFAULT_I2C_BUS,
-      i2cAddress: DEFAULT_I2C_ADDRESS,
+      i2cAddress: i2c_address,
       humidityOversampling: OVERSAMPLE.X1,
       pressureOversampling: OVERSAMPLE.X1,
       temperatureOversampling: OVERSAMPLE.X1,
