@@ -6,7 +6,7 @@ bme280.open({i2cAddress: 0x76}).then(async sensor => {
     "####Sensor 1#### \n" + 
     "Temp: " + sensor1.temperature.toFixed(2) +"C\n" +
     "Humid: " + sensor1.humidity.toFixed(2) +"%\n" +
-    "Pressure: " + sensor1.pressure.toFixed(2) +"%\n"
+    "Pressure: " + sensor1.pressure.toFixed(2) +"hPa\n"
   );
   await sensor.close();
 }).catch(console.log);
@@ -17,7 +17,7 @@ bme280.open({i2cAddress: 0x77}).then(async sensor => {
     "####Sensor 2#### \n" + 
     "Temp: " + sensor1.temperature.toFixed(2) +"C\n" +
     "Humid: " + sensor1.humidity.toFixed(2) +"%\n" +
-    "Pressure: " + sensor1.pressure.toFixed(2) +"%\n"
+    "Pressure: " + sensor1.pressure.toFixed(2) +"hPa\n"
   );
   await sensor.close();
 }).catch(console.log);
