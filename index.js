@@ -3,7 +3,7 @@ var asciichart = require ('asciichart')
 
 const CtoF = (c) =>{
   const F = (c * (9/5) + 32);
-  return F;
+  return F.toFixed(2);
 };
 
 const getSensorData = (sensor) => {
@@ -22,3 +22,4 @@ const getSensorData = (sensor) => {
 };
 
 getSensorData({i2cAddress: 0x76});
+getSensorData({i2cAddress: 0x77});
