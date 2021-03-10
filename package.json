@@ -9,6 +9,7 @@
   "author": "bakon",
   "license": "ISC",
   "dependencies": {
+    "asciichart": "^1.5.25",
     "bme280sensor": "https://github.com/bakon11/bme280sensor/raw/master/bme280sensor-2.1.0.tgz"
   }
 }
