@@ -17,8 +17,16 @@ const getSensorData = (sensor) => {
       "Humid: " + sensor1.humidity.toFixed(2) +"%\n" +
       "Pressure: " + sensor1.pressure.toFixed(2) +"hPa\n"
     );
+    makeGraph();
     await sensor.close();
   }).catch(console.log);
+};
+
+const makeGraph = () =>{
+  var s0 = new Array (120)
+  for (var i = 0; i < s0.length; i++)
+      s0[i] = 15 * Math.sin (i * ((Math.PI * 4) / s0.length))
+  console.log (asciichart.plot (s0))
 };
 
 getSensorData({i2cAddress: 0x76});
