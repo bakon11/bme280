@@ -8,10 +8,11 @@ const CtoF = (c) =>{
 
 const getSensorData = (sensor) => {
   console.log(sensor.i2cAddress);
+  const sensorID = sensor.i2cAddress;
   bme280.open(sensor).then(async sensor => {
     const sensor1 = await sensor.read();
     console.log(
-      "####Sensor_"+ sensor.i2cAddress +"#### \n" + 
+      "####Sensor_"+ sensorID +"#### \n" + 
       "Temp: " + sensor1.temperature.toFixed(2) +"C\n" +
       "Temp: " + CtoF(sensor1.temperature.toFixed(2)) + "F\n" +
       "Humid: " + sensor1.humidity.toFixed(2) +"%\n" +
