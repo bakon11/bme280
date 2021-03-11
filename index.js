@@ -14,7 +14,7 @@ const getSensorData = (sensor) => {
     bme280.open(sensor).then(async sensor => {
       const sensorData = await sensor.read();
       temp.push(CtoF(sensorData.temperature.toFixed(2)));
-      humid.push(sensorData.humidity);
+      humid.push(sensorData.humidity.toFixed(2));
       console.log("######################################################################################");	    
       await displayData(sensorID, sensorData);     
       await makeGraph("Temperature", "F*", temp);
@@ -44,4 +44,3 @@ const makeGraph = (sensorName, measurement, sensorInfo) => {
 
 getSensorData({i2cAddress: 0x76});
 getSensorData({i2cAddress: 0x77});
-//
