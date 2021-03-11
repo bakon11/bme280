@@ -13,11 +13,11 @@ const getSensorData = (sensor) => {
   setInterval(()=>{
     bme280.open(sensor).then(async sensor => {
       const sensorData = await sensor.read();
-      temp.push(sensorData.temperature);
+      temp.push(CtoF(sensorData.temperature.toFixed(2)));
       humid.push(sensorData.humidity);
       console.log("######################################################################################");	    
       await displayData(sensorID, sensorData);     
-      await makeGraph("Temperature", "C*", temp);
+      await makeGraph("Temperature", "F*", temp);
       await makeGraph("Humidity", "%", humid);
       console.log("######################################################################################");   
       await sensor.close();
