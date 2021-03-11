@@ -13,7 +13,7 @@ const getSensorData = (sensor) => {
   setInterval(()=>{
     bme280.open(sensor).then(async sensor => {
       const sensorData = await sensor.read();
-      temp.push(CtoF(sensorData.temperature.toFixed(2)));
+      temp.push(sensorData.temperature.toFixed(2));
       console.log(temp);
       humid.push(sensorData.humidity.toFixed(2));
       console.log(humid);
