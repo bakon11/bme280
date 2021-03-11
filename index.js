@@ -39,8 +39,8 @@ const displayData = (sensorID, sensorData) => {
 const makeGraph = (sensorName, measurement, sensorInfo) => {
  console.log("########"+sensorName+"########\n");
  console.log("Max:"+Math.max(...sensorInfo).toFixed(2)+ measurement +  
-	     " | Min:"+Math.min(...sensorInfo).toFixed(2) + measurement + 
-	     " | Avg:"+(sensorInfo.reduce((a,b) => a + b, 0) / sensorInfo.length).toFixed(2) + measurement + "\n");	
+	     " | Min:"+Math.min(...sensorInfo).toFixed(2) + measurement + "\n"); 
+	     // " | Avg:"+(sensorInfo.reduce((a,b) => a + b, 0) / sensorInfo.length).toFixed(2) + measurement + "\n");	
  console.log(asciichart.plot (sensorInfo, { height: 6 }) + "\n") // this rescales the graph to ±3 lines 
 };
 
