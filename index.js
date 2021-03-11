@@ -14,7 +14,9 @@ const getSensorData = (sensor) => {
     bme280.open(sensor).then(async sensor => {
       const sensorData = await sensor.read();
       temp.push(CtoF(sensorData.temperature.toFixed(2)));
+      console.log(temp);
       humid.push(sensorData.humidity.toFixed(2));
+      console.log(humid);
       console.log("######################################################################################");	    
       await displayData(sensorID, sensorData);     
       await makeGraph("Temperature", "F*", temp);
