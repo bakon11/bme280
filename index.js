@@ -1,5 +1,7 @@
 const bme280 = require('bme280sensor');
-var asciichart = require ('asciichart')
+var asciichart = require ('asciichart');
+
+
 
 const CtoF = (c) =>{
   const F = (c * (9/5) + 32);
@@ -9,17 +11,15 @@ const CtoF = (c) =>{
 const getSensorData = (sensor) => {
   const sensorID = sensor.i2cAddress.toString(16);
   let temp = [];
-  let humid = [];	 
+  let humid = []y;	 
   setInterval(()=>{
-    bme280.open(sensor).then(async sensor => {
+    bme280.open(sensor).then(async (sensor) => {
       const sensorData = await sensor.read();
       temp.push(sensorData.temperature.toFixed(2));
-      console.log(temp.length);
       humid.push(sensorData.humidity.toFixed(2));
-      console.log(humid.length);
       console.log("######################################################################################");	    
       await displayData(sensorID, sensorData);     
-      await makeGraph("Temperature", "F*", temp);
+      await makeGraph("Temperature", "C*", temp);
       await makeGraph("Humidity", "%", humid);
       console.log("######################################################################################");   
       await sensor.close();
@@ -34,15 +34,19 @@ const displayData = (sensorID, sensorData) => {
         "Humid: " + sensorData.humidity.toFixed(2) +"%\n" +
         "Pressure: " + sensorData.pressure.toFixed(2) +"hPa\n"
       );
+ console.log(
+	"Max:"+Math.max(...sensorInfo).toFixed(2)+ measurement +  
+	" | Min:"+Math.min(...sensorInfo).toFixed(2) + measurement +
+	" | Avg:"+(sensorInfo.reduce((a,b) => a + b, 0) / sensorInfo.length) + measurement + "\n"
+      );
 };
 
 const makeGraph = (sensorName, measurement, sensorInfo) => {
- console.log("########"+sensorName+"########\n");
- console.log("Max:"+Math.max(...sensorInfo).toFixed(2)+ measurement +  
-	     " | Min:"+Math.min(...sensorInfo).toFixed(2) + measurement + "\n"); 
-	     // " | Avg:"+(sensorInfo.reduce((a,b) => a + b, 0) / sensorInfo.length).toFixed(2) + measurement + "\n");	
- console.log(asciichart.plot (sensorInfo, { height: 6 }) + "\n") // this rescales the graph to ±3 lines 
+ console.log("########"+sensorName+"########\n");	
+ console.log(sensorInfo.length);
+ // console.log(asciichart.plot (sensorInfo)) // this rescales the graph to ±3 lines 
+	
 };
 
 getSensorData({i2cAddress: 0x76});
-getSensorData({i2cAddress: 0x77});
+// getSensorData({i2cAddress: 0x77});
