@@ -22,8 +22,8 @@ const getSensorData = (sensor) => {
 };
 
 const displayData = async (sensorID, sensorData) => {
- await temp.push(sensorData.temperature.toFixed(2));
- await humi.push(sensorData.humidity.toFixed(2));
+ temp.push(sensorData.temperature.toFixed(2));
+ humi.push(sensorData.humidity.toFixed(2));
 
  console.log(
          "####Sensor "+ sensorID +"#### \n" + 
@@ -36,8 +36,8 @@ const displayData = async (sensorID, sensorData) => {
  calcAvg(temp, "C");
  calcAvg(humi, "%");
  
- makeGraph(sensorID, temp);
- makeGraph(sensorID, humi);
+ temp.length > 0 && makeGraph(sensorID, temp);
+ humi.length > 0 && makeGraph(sensorID, humi);
 
 };
 
