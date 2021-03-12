@@ -37,7 +37,7 @@ const displayData = (sensorID, sensorData) => {
 };
 
 const calcAvg = (sensorInfo, measurement) => {
-  console.log(sensorInfo);
+  console.log(sensorInfo.length);
   console.log(
     "Max:"+Math.max(...sensorInfo).toFixed(2)+ measurement +  
     " | Min:"+Math.min(...sensorInfo).toFixed(2) + measurement +
