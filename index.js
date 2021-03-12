@@ -1,9 +1,7 @@
 const bme280 = require('bme280sensor');
 var asciichart = require ('asciichart');
-let temp = [];
-let humid = [];	
-
-
+var temp = [];
+var humid = [];
 const CtoF = (c) =>{
   const F = (c * (9/5) + 32);
   return F.toFixed(2);
@@ -38,10 +36,13 @@ const displayData = (sensorID, sensorData) => {
 
 const calcAvg = (sensorInfo, measurement) => {
   console.log(sensorInfo.length);
+  let max = Math.max(...sensorInfo).toFixed(2);
+  let min = Math.min(...sensorInfo).toFixed(2);
+  let avg = sensorInfo.reduce((a, b) => a + b) / sensorInfo.length;  
   console.log(
-    "Max:"+Math.max(...sensorInfo).toFixed(2)+ measurement +  
-    " | Min:"+Math.min(...sensorInfo).toFixed(2) + measurement +
-    " | Avg:"+(sensorInfo.reduce((a,b) => a + b, 0) / sensorInfo.length) + measurement + "\n"
+    "Max:"+ max + measurement +  
+    " | Min:"+ min + measurement +
+    " | Avg:"+ avg + measurement
   );
 }
 
