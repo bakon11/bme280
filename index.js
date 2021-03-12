@@ -54,8 +54,10 @@ const calcAvg = (sensorInfo, measurement) => {
 };
 
 const makeGraph = (sensorName, sensorInfo) => {
+  let data = [...sensorInfo];
+  console.log(data);
   console.log("########"+sensorName+"########\n");	
-  console.log(asciichart.plot (sensorInfo)) // this rescales the graph to ±3 lines 
+  console.log(asciichart.plot (sensorInfo));
 };
 
 getSensorData({i2cAddress: 0x76});
