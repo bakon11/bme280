@@ -23,17 +23,12 @@ const getSensorData = (sensor) => {
 const displayData = (sensorID, sensorData) => {
   temp.push(sensorData.temperature.toFixed(2));
   humid.push(sensorData.humidity.toFixed(2));
-
   console.log(
           "####Sensor "+ sensorID +"#### \n" + 
-          "Temp: " + sensorData.temperature.toFixed(2) + "C | " + CtoF(sensorData.temperature.toFixed(2)) +"F\n" +
-          "Humid: " + sensorData.humidity.toFixed(2) +"%\n" +
+          "Temp: " + sensorData.temperature.toFixed(2) + "C | " + CtoF(sensorData.temperature.toFixed(2)) +"F" + calcAvg(temp, "C") + "\n" +
+          "Humid: " + sensorData.humidity.toFixed(2) +"%" + calcAvg(humid, "%") + "\n" +
           "Pressure: " + sensorData.pressure.toFixed(2) +"hPa\n"
   );
-
-  calcAvg(temp, "C");
-  calcAvg(humid, "%");
-
 };
 
 const calcAvg = (sensorInfo, measurement) => {
