@@ -57,7 +57,7 @@ const calcAvg = (sensorInfo, measurement) => {
 const makeGraph = (sensorName, sensorInfo) => {
   var config = {
 	  colors: [ asciichart.blue, asciichart.green ],
-	  height: 4,
+	  height: 10,
   }
   console.log("################\n");	
   console.log(asciichart.plot(sensorInfo, config) + "\n" );
@@ -66,4 +66,4 @@ const makeGraph = (sensorName, sensorInfo) => {
 };
 
 getSensorData({i2cAddress: 0x76});
-getSensorData({i2cAddress: 0x77});
+// getSensorData({i2cAddress: 0x77});
