@@ -9,10 +9,10 @@ const CtoF = (c) =>{
 };
 
 const getSensorData = (sensor) => {
-  const sensorID = sensor.i2cAddress.toString(16); 
+  const sensorID = sensor[0].i2cAddress.toString(16); 
   
   setInterval(()=>{
-    bme280.open(sensor).then(async (sensor) => {
+    bme280.open(sensor[0]).then(async (sensor) => {
       const sensorData = await sensor.read(); 
       await sensor.close();
       displayData(sensorID, sensorData);
@@ -21,7 +21,7 @@ const getSensorData = (sensor) => {
   }, 2000);
 };
 
-const displayData = (sensorID, sensorData) => {
+const displayData = (sensorID, sensorData) => { 
  console.clear();
  temp.push(sensorData.temperature);
  humi.push(sensorData.humidity);
@@ -65,5 +65,5 @@ const makeGraph = (sensorName, sensorInfo) => {
 
 };
 
-getSensorData({i2cAddress: 0x76});
-// getSensorData({i2cAddress: 0x77});
+getSensorData([{i2cAddress: 0x76},{i2cAddress: 0x77}]);
+
