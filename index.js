@@ -21,23 +21,25 @@ const getSensorData = (sensor) => {
   }, 2000);
 };
 
-const displayData = async (sensorID, sensorData) => {
- temp.push(sensorData.temperature.toFixed(2));
- humi.push(sensorData.humidity.toFixed(2));
+const displayData = (sensorID, sensorData) => {
+ console.clear();
+ temp.push(sensorData.temperature);
+ humi.push(sensorData.humidity);
+ temp.length == 50 && temp.shift();
+ humi.length == 50 && humi.shift();
 
  console.log(
          "####Sensor "+ sensorID +"#### \n" + 
-         "Temp: " + sensorData.temperature.toFixed(2) + "C | " + CtoF(sensorData.temperature.toFixed(2)) +"F\n" +
+         "Temp: " + sensorData.temperature.toFixed(2) + "C | " + CtoF(sensorData.temperature) +"F\n" +
          "Humid: " + sensorData.humidity.toFixed(2) +"%\n" +
-         "Pressure: " + sensorData.pressure.toFixed(2) +"hPa\n"
+         "Pressure: " + sensorData.pressure.toFixed(2) +"hPa"
  );
  
   
  calcAvg(temp, "C");
  calcAvg(humi, "%");
  
- temp.length > 0 && makeGraph(sensorID, temp);
- humi.length > 0 && makeGraph(sensorID, humi);
+ makeGraph(sensorID, [temp, humi]);
 
 };
 
@@ -48,16 +50,20 @@ const calcAvg = (sensorInfo, measurement) => {
   console.log(
     "Max:"+ max + measurement +  
     " | Min:"+ min + measurement +
-    " | Avg:"+ avg + measurement + "\n"
+    " | Avg:"+ avg + measurement
   );
 };
 
 const makeGraph = (sensorName, sensorInfo) => {
-  let data = [...sensorInfo];
-  console.log(data);
-  console.log("########"+sensorName+"########\n");	
-  console.log(asciichart.plot(data));
+  var config = {
+	  colors: [ asciichart.blue, asciichart.green ],
+	  height: 4,
+  }
+  console.log("################\n");	
+  console.log(asciichart.plot(sensorInfo, config) + "\n" );
+  console.log("################\n");	
+
 };
 
 getSensorData({i2cAddress: 0x76});
-// getSensorData({i2cAddress: 0x77});
+getSensorData({i2cAddress: 0x77});
